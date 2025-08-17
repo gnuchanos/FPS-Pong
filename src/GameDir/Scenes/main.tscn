@@ -1,0 +1,65 @@
+[gd_scene load_steps=6 format=3 uid="uid://dsqp445w7ghtq"]
+
+[ext_resource type="Script" path="res://GameDir/Scripts/main.gd" id="1_fixxu"]
+[ext_resource type="FontFile" uid="uid://bqmglpkfyr1mm" path="res://BaseData/Font/FreeSans.ttf" id="1_vh32o"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fixxu"]
+bg_color = Color(0.111696, 0.00724688, 0.156991, 1)
+
+[sub_resource type="Animation" id="Animation_fixxu"]
+resource_name = "anim"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1600, 900), Vector2(1600, 1200), Vector2(1600, 900)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f1omh"]
+_data = {
+"anim": SubResource("Animation_fixxu")
+}
+
+[node name="main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fixxu")
+
+[node name="bg" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_fixxu")
+
+[node name="text" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_vh32o")
+theme_override_font_sizes/font_size = 111
+text = "Press Enter Start The Game..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="text"]
+libraries = {
+"": SubResource("AnimationLibrary_f1omh")
+}

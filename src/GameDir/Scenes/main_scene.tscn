@@ -1,0 +1,411 @@
+[gd_scene load_steps=22 format=3 uid="uid://bgq05mg58f3iv"]
+
+[ext_resource type="Script" path="res://GameDir/Scripts/main_scene.gd" id="1_bbqmf"]
+[ext_resource type="Script" path="res://GameDir/Scripts/player.gd" id="1_thbve"]
+[ext_resource type="PackedScene" uid="uid://dxbxrjh67weua" path="res://GameDir/Player/Paddle.glb" id="1_wxufu"]
+[ext_resource type="Script" path="res://GameDir/Scripts/head.gd" id="3_1r6su"]
+[ext_resource type="PackedScene" uid="uid://decilfrf67kqj" path="res://GameDir/3D/w310/w310.tscn" id="3_3oijv"]
+[ext_resource type="Script" path="res://BaseData/FPS/settings.gd" id="4_le22l"]
+[ext_resource type="FontFile" uid="uid://bqmglpkfyr1mm" path="res://BaseData/Font/FreeSans.ttf" id="5_acbpq"]
+[ext_resource type="PackedScene" uid="uid://yskbh4vxjalo" path="res://GameDir/3D/stadium/stadium.glb" id="6_acbpq"]
+[ext_resource type="Script" path="res://GameDir/Scripts/player_1.gd" id="7_3oijv"]
+[ext_resource type="Material" uid="uid://ss0sy8h02n4q" path="res://GameDir/3D/stadium/collision.tres" id="7_oghi2"]
+[ext_resource type="PackedScene" uid="uid://dpwtoibtrpkqy" path="res://GameDir/ball/ball.tscn" id="8_86o4q"]
+[ext_resource type="AudioStream" uid="uid://cycl8s3a3d4y4" path="res://GameDir/Sound/hit1.ogg" id="12_547lq"]
+[ext_resource type="AudioStream" uid="uid://bixm7tf40u2yx" path="res://GameDir/Sound/music.ogg" id="13_64k4c"]
+
+[sub_resource type="Environment" id="Environment_le22l"]
+background_mode = 1
+background_energy_multiplier = 0.2
+ambient_light_source = 3
+tonemap_mode = 3
+glow_enabled = true
+glow_strength = 0.45
+glow_bloom = 0.5
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wxufu"]
+height = 2.92298
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_oghi2"]
+size = Vector3(9.01733, 0.0717909, 5.86304)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oghi2"]
+bg_color = Color(0.0177324, 0.0177324, 0.0177324, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_86o4q"]
+bg_color = Color(0.197937, 0.197937, 0.197937, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_acbpq"]
+size = Vector3(9.81345, 1.9187, 8.64561)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_86o4q"]
+size = Vector3(1, 4.13489, 109.255)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bbqmf"]
+size = Vector3(40.6455, 4.39844, 7.97241)
+
+[node name="MainScene" type="Node3D"]
+script = ExtResource("1_bbqmf")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_le22l")
+
+[node name="player0" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.101724, 0)
+script = ExtResource("1_thbve")
+
+[node name="w311" parent="player0" instance=ExtResource("3_3oijv")]
+transform = Transform3D(0.298093, 0, 0, 0, 0.149046, -0.258156, 0, 0.258156, 0.149046, 0.0046131, 1.74197, -0.037608)
+
+[node name="Paddle" parent="player0" instance=ExtResource("1_wxufu")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, -1.04064)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="player0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.47298, 0)
+shape = SubResource("CapsuleShape3D_wxufu")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="player0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00275707, 3.34741, 1.81343)
+shape = SubResource("BoxShape3D_oghi2")
+
+[node name="head" type="Node3D" parent="player0"]
+transform = Transform3D(1, 0, 0, 0, 0.995763, 0.0919535, 0, -0.0919535, 0.995763, 0, 2.47106, 0.608734)
+script = ExtResource("3_1r6su")
+
+[node name="Camera3D" type="Camera3D" parent="player0/head"]
+transform = Transform3D(1, 0, 0, 0, 0.992682, 0.120761, 0, -0.120761, 0.992682, 0, -0.0284643, 0.308238)
+
+[node name="UI" type="Control" parent="player0"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="settings" type="Window" parent="player0/UI"]
+auto_translate_mode = 1
+position = Vector2i(60, 36)
+size = Vector2i(830, 785)
+visible = false
+script = ExtResource("4_le22l")
+
+[node name="BLACKHOLE" type="ScrollContainer" parent="player0/UI/settings"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="player0/UI/settings/BLACKHOLE"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="sep" type="Label" parent="player0/UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_oghi2")
+
+[node name="windowMode" type="HBoxContainer" parent="player0/UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+
+[node name="WindowMode" type="Button" parent="player0/UI/settings/BLACKHOLE/VBoxContainer/windowMode"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("5_acbpq")
+theme_override_font_sizes/font_size = 45
+text = "Full Screen Mode"
+
+[node name="sep2" type="Label" parent="player0/UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_oghi2")
+
+[node name="mouseSpeedtext" type="Label" parent="player0/UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_acbpq")
+theme_override_font_sizes/font_size = 27
+theme_override_styles/normal = SubResource("StyleBoxFlat_86o4q")
+text = "Mouse Speed"
+horizontal_alignment = 1
+
+[node name="mouseSpeed" type="HBoxContainer" parent="player0/UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+
+[node name="mousespeedSlider" type="HSlider" parent="player0/UI/settings/BLACKHOLE/VBoxContainer/mouseSpeed"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 0.1
+max_value = 1.0
+step = 0.1
+value = 0.5
+
+[node name="sep3" type="Label" parent="player0/UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_oghi2")
+
+[node name="MusicVolumeText" type="Label" parent="player0/UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_acbpq")
+theme_override_font_sizes/font_size = 27
+theme_override_styles/normal = SubResource("StyleBoxFlat_86o4q")
+text = "Music Volume"
+horizontal_alignment = 1
+
+[node name="MusicVolume" type="HBoxContainer" parent="player0/UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+
+[node name="MusicVolumeSlider" type="HSlider" parent="player0/UI/settings/BLACKHOLE/VBoxContainer/MusicVolume"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = -30.0
+max_value = 0.0
+
+[node name="sep4" type="Label" parent="player0/UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_oghi2")
+
+[node name="EffectVolumeText" type="Label" parent="player0/UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_acbpq")
+theme_override_font_sizes/font_size = 27
+theme_override_styles/normal = SubResource("StyleBoxFlat_86o4q")
+text = "Effect Volume"
+horizontal_alignment = 1
+
+[node name="EffectVolume" type="HBoxContainer" parent="player0/UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+
+[node name="EffectVolumeSlider" type="HSlider" parent="player0/UI/settings/BLACKHOLE/VBoxContainer/EffectVolume"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = -30.0
+max_value = 0.0
+
+[node name="sep5" type="Label" parent="player0/UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_oghi2")
+
+[node name="EffectVolumeText2" type="Label" parent="player0/UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_acbpq")
+theme_override_font_sizes/font_size = 27
+theme_override_styles/normal = SubResource("StyleBoxFlat_86o4q")
+text = "Atmosphere Volume"
+horizontal_alignment = 1
+
+[node name="AtmosphereVolume" type="HBoxContainer" parent="player0/UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+
+[node name="AtmosphereVolumeSlider" type="HSlider" parent="player0/UI/settings/BLACKHOLE/VBoxContainer/AtmosphereVolume"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = -30.0
+max_value = 0.0
+
+[node name="sep6" type="Label" parent="player0/UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_oghi2")
+
+[node name="VoiceVolumeText" type="Label" parent="player0/UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_acbpq")
+theme_override_font_sizes/font_size = 27
+theme_override_styles/normal = SubResource("StyleBoxFlat_86o4q")
+text = "Voice Volume"
+horizontal_alignment = 1
+
+[node name="VoiceVolume" type="HBoxContainer" parent="player0/UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+
+[node name="VoiceVolumeSlider" type="HSlider" parent="player0/UI/settings/BLACKHOLE/VBoxContainer/VoiceVolume"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = -30.0
+max_value = 0.0
+
+[node name="sep7" type="Label" parent="player0/UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_oghi2")
+
+[node name="fovText" type="Label" parent="player0/UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_acbpq")
+theme_override_font_sizes/font_size = 27
+theme_override_styles/normal = SubResource("StyleBoxFlat_86o4q")
+text = "FOV"
+horizontal_alignment = 1
+
+[node name="fov" type="HBoxContainer" parent="player0/UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+
+[node name="fovSlider" type="HSlider" parent="player0/UI/settings/BLACKHOLE/VBoxContainer/fov"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 30.0
+max_value = 120.0
+value = 90.0
+
+[node name="sep8" type="Label" parent="player0/UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_oghi2")
+
+[node name="shadersText" type="Label" parent="player0/UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_acbpq")
+theme_override_font_sizes/font_size = 27
+theme_override_styles/normal = SubResource("StyleBoxFlat_86o4q")
+text = "Shaders"
+horizontal_alignment = 1
+
+[node name="sep10" type="Label" parent="player0/UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_oghi2")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="player0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.55971, 1.87471)
+light_energy = 1.8
+
+[node name="player0Area" type="Area3D" parent="player0"]
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="player0/player0Area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00238037, 1.10982, 1.21337)
+shape = SubResource("BoxShape3D_acbpq")
+
+[node name="player1" type="CharacterBody3D" parent="."]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0.0896554, -83.5383)
+script = ExtResource("7_3oijv")
+
+[node name="Paddle" parent="player1" instance=ExtResource("1_wxufu")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, -1.04064)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="player1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.47298, 0)
+shape = SubResource("CapsuleShape3D_wxufu")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="player1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00275707, 4.51339, 1.81343)
+shape = SubResource("BoxShape3D_oghi2")
+
+[node name="player1Area" type="Area3D" parent="player1"]
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="player1/player1Area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.102097, 1.10982, 0.891876)
+shape = SubResource("BoxShape3D_acbpq")
+
+[node name="Timer" type="Timer" parent="player1"]
+
+[node name="stadium2" parent="." instance=ExtResource("6_acbpq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -79.8267)
+
+[node name="collision" parent="stadium2" index="2"]
+material_override = ExtResource("7_oghi2")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20.9509, -40.1051)
+light_energy = 16.0
+omni_range = 414.035
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20.9509, -9.18874)
+light_energy = 16.0
+omni_range = 414.035
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20.9509, -71.3168)
+light_energy = 16.0
+omni_range = 414.035
+
+[node name="left" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.2098, 0.592268, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="left"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.56744, -44.5425)
+shape = SubResource("BoxShape3D_86o4q")
+
+[node name="right" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.0083, 0.592268, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="right"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.56744, -44.5425)
+shape = SubResource("BoxShape3D_86o4q")
+
+[node name="ball" parent="." instance=ExtResource("8_86o4q")]
+transform = Transform3D(0.566445, 0, 0, 0, 0.566445, 0, 0, 0, 0.566445, 0.269716, 2.33643, -40.7319)
+
+[node name="hit" type="AudioStreamPlayer3D" parent="ball"]
+stream = ExtResource("12_547lq")
+bus = &"Effect"
+
+[node name="Player1_Score" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.7791, 14.4503)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player1_Score"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.393337, -3.57457, -0.248657)
+shape = SubResource("BoxShape3D_bbqmf")
+
+[node name="Player0_Score" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.52328, -95.1206)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player0_Score"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.393337, -3.57457, 0.0204849)
+shape = SubResource("BoxShape3D_bbqmf")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -177.0
+offset_right = 177.0
+offset_bottom = 68.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("5_acbpq")
+theme_override_font_sizes/font_size = 30
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AI" type="Label3D" parent="."]
+transform = Transform3D(6.5021e-08, -1.00155, -2.18174, 2.98486e-08, 2.18174, -1.00155, 2.40065, 0, 7.15448e-08, 18.1289, 14.8519, -40.7823)
+pixel_size = 0.047
+text = "dasdasdasdas"
+
+[node name="YOU" type="Label3D" parent="."]
+transform = Transform3D(1.4329e-07, 0.898055, 2.22634, 3.66138e-08, 2.22634, -0.898055, -2.40065, 8.75585e-08, 1.19189e-07, -18.2179, 14.8519, -40.7823)
+pixel_size = 0.047
+text = "dasdasdasdas"
+
+[node name="music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_64k4c")
+volume_db = -20.0
+bus = &"Music"
+
+[connection signal="close_requested" from="player0/UI/settings" to="player0/UI/settings" method="_on_close_requested"]
+[connection signal="pressed" from="player0/UI/settings/BLACKHOLE/VBoxContainer/windowMode/WindowMode" to="player0/UI/settings" method="_on_window_mode_pressed"]
+[connection signal="value_changed" from="player0/UI/settings/BLACKHOLE/VBoxContainer/mouseSpeed/mousespeedSlider" to="player0/UI/settings" method="_on_mousespeed_slider_value_changed"]
+[connection signal="value_changed" from="player0/UI/settings/BLACKHOLE/VBoxContainer/MusicVolume/MusicVolumeSlider" to="player0/UI/settings" method="_on_music_volume_slider_value_changed"]
+[connection signal="value_changed" from="player0/UI/settings/BLACKHOLE/VBoxContainer/EffectVolume/EffectVolumeSlider" to="player0/UI/settings" method="_on_effect_volume_slider_value_changed"]
+[connection signal="value_changed" from="player0/UI/settings/BLACKHOLE/VBoxContainer/AtmosphereVolume/AtmosphereVolumeSlider" to="player0/UI/settings" method="_on_atmosphere_volume_slider_value_changed"]
+[connection signal="value_changed" from="player0/UI/settings/BLACKHOLE/VBoxContainer/VoiceVolume/VoiceVolumeSlider" to="player0/UI/settings" method="_on_voice_volume_slider_value_changed"]
+[connection signal="value_changed" from="player0/UI/settings/BLACKHOLE/VBoxContainer/fov/fovSlider" to="player0/UI/settings" method="_on_fov_slider_value_changed"]
+[connection signal="body_entered" from="player0/player0Area" to="." method="_on_player_0_area_body_entered"]
+[connection signal="body_entered" from="player1/player1Area" to="." method="_on_player_1_area_body_entered"]
+[connection signal="body_entered" from="left" to="." method="_on_left_body_entered"]
+[connection signal="body_entered" from="right" to="." method="_on_right_body_entered"]
+[connection signal="body_entered" from="Player1_Score" to="." method="_on_player_1_score_body_entered"]
+[connection signal="body_exited" from="Player1_Score" to="." method="_on_player_1_score_body_exited"]
+[connection signal="body_entered" from="Player0_Score" to="." method="_on_player_0_score_body_entered"]
+[connection signal="body_exited" from="Player0_Score" to="." method="_on_player_0_score_body_exited"]
+
+[editable path="stadium2"]
