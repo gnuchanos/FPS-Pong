@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://b33sogi6dthi0"]
+
+[ext_resource type="Script" path="res://BaseData/Scripts/gnuchanos.gd" id="1_fvjhu"]
+[ext_resource type="PackedScene" uid="uid://nrhwwstjdono" path="res://BaseData/3D/fatih/fatih.glb" id="2_q5g3r"]
+[ext_resource type="ArrayOccluder3D" uid="uid://bf7jxpcfxa0it" path="res://BaseData/3D/fatih/gnuchanos.occ" id="3_q5g3r"]
+
+[node name="gnuchanos" type="Node3D"]
+script = ExtResource("1_fvjhu")
+
+[node name="fatih" parent="." instance=ExtResource("2_q5g3r")]
+
+[node name="OccluderInstance3D" type="OccluderInstance3D" parent="."]
+occluder = ExtResource("3_q5g3r")

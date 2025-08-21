@@ -5,7 +5,6 @@ extends Window
 
 func _on_close_requested() -> void:
 	self.hide()
-	get_tree().paused = true
 
 var FullScreen = false
 func _on_window_mode_pressed() -> void:

@@ -1,24 +1,19 @@
 extends CharacterBody3D
 
-
 var max_speed: float = 100.0
-var ball_position_history: Array = []
-var reaction_delay: float = 0.15
+var follow_smooth: float = 15.0  # Tepki hızı
+
+func _process(delta: float) -> void:
+	GlobalVAR.AIMaxDelay = max(GlobalVAR.AIDelayMin, GlobalVAR.AIMaxDelay - 0.1 * delta)
+	GlobalVAR.AIDelayCurrent = clamp(GlobalVAR.AIDelayCurrent, GlobalVAR.AIDelayMin, GlobalVAR.AIMaxDelay)
 
 func _physics_process(delta: float) -> void:
-	self.position.y = 0.09
-	ball_position_history.append(GlobalVAR.ballPositionX)
+	var pos := global_position
+	pos.y = 0.09
+	global_position = pos
 
-	var frame_delay := int(reaction_delay / delta)
-	if ball_position_history.size() > frame_delay:
-		var target_x: float = ball_position_history[0]
-		ball_position_history.remove_at(0)
+	var target_x: float = GlobalVAR.ballPositionX
+	var dx: float = target_x - global_position.x
 
-		var dx: float = target_x - position.x
-		var direction: float = sign(dx)
-		var distance: float = abs(dx)
-
-		if distance > 1.0:
-			position.x += direction * min(max_speed * delta, distance)
-
+	velocity.x = lerp(velocity.x, dx * follow_smooth, delta)
 	move_and_slide()

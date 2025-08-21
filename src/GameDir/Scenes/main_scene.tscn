@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bgq05mg58f3iv"]
+[gd_scene load_steps=23 format=3 uid="uid://bgq05mg58f3iv"]
 
 [ext_resource type="Script" path="res://GameDir/Scripts/main_scene.gd" id="1_bbqmf"]
 [ext_resource type="Script" path="res://GameDir/Scripts/player.gd" id="1_thbve"]
@@ -12,7 +12,8 @@
 [ext_resource type="Material" uid="uid://ss0sy8h02n4q" path="res://GameDir/3D/stadium/collision.tres" id="7_oghi2"]
 [ext_resource type="PackedScene" uid="uid://dpwtoibtrpkqy" path="res://GameDir/ball/ball.tscn" id="8_86o4q"]
 [ext_resource type="AudioStream" uid="uid://cycl8s3a3d4y4" path="res://GameDir/Sound/hit1.ogg" id="12_547lq"]
-[ext_resource type="AudioStream" uid="uid://bixm7tf40u2yx" path="res://GameDir/Sound/music.ogg" id="13_64k4c"]
+[ext_resource type="AudioStream" uid="uid://dnp1j4sug1gms" path="res://GameDir/Sound/Time's Collapse.ogg" id="13_tg0qh"]
+[ext_resource type="PackedScene" uid="uid://b33sogi6dthi0" path="res://BaseData/3D/fatih/gnuchanos.tscn" id="14_tg0qh"]
 
 [sub_resource type="Environment" id="Environment_le22l"]
 background_mode = 1
@@ -251,18 +252,6 @@ value = 90.0
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_oghi2")
 
-[node name="shadersText" type="Label" parent="player0/UI/settings/BLACKHOLE/VBoxContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("5_acbpq")
-theme_override_font_sizes/font_size = 27
-theme_override_styles/normal = SubResource("StyleBoxFlat_86o4q")
-text = "Shaders"
-horizontal_alignment = 1
-
-[node name="sep10" type="Label" parent="player0/UI/settings/BLACKHOLE/VBoxContainer"]
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_oghi2")
-
 [node name="OmniLight3D" type="OmniLight3D" parent="player0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.55971, 1.87471)
 light_energy = 1.8
@@ -387,9 +376,131 @@ pixel_size = 0.047
 text = "dasdasdasdas"
 
 [node name="music" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("13_64k4c")
+stream = ExtResource("13_tg0qh")
 volume_db = -20.0
 bus = &"Music"
+
+[node name="fatih" type="Node3D" parent="."]
+
+[node name="gnuchanos31" parent="fatih" instance=ExtResource("14_tg0qh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.5117, 8.3068, -26.6137)
+
+[node name="gnuchanos32" parent="fatih" instance=ExtResource("14_tg0qh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.5117, 8.3068, -31.4583)
+
+[node name="gnuchanos33" parent="fatih" instance=ExtResource("14_tg0qh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.5117, 8.3068, -36.028)
+
+[node name="gnuchanos34" parent="fatih" instance=ExtResource("14_tg0qh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.5117, 8.3068, -44.9014)
+
+[node name="gnuchanos35" parent="fatih" instance=ExtResource("14_tg0qh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.5117, 8.3068, -49.746)
+
+[node name="gnuchanos36" parent="fatih" instance=ExtResource("14_tg0qh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.5117, 8.3068, -54.3158)
+
+[node name="gnuchanos19" parent="fatih" instance=ExtResource("14_tg0qh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.8299, 6.28522, -26.6137)
+
+[node name="gnuchanos20" parent="fatih" instance=ExtResource("14_tg0qh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.8299, 6.28522, -31.4583)
+
+[node name="gnuchanos21" parent="fatih" instance=ExtResource("14_tg0qh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.8299, 6.28522, -36.028)
+
+[node name="gnuchanos22" parent="fatih" instance=ExtResource("14_tg0qh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.8299, 6.28522, -44.9014)
+
+[node name="gnuchanos23" parent="fatih" instance=ExtResource("14_tg0qh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.8299, 6.28522, -49.746)
+
+[node name="gnuchanos24" parent="fatih" instance=ExtResource("14_tg0qh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.8299, 6.28522, -54.3158)
+
+[node name="gnuchanos7" parent="fatih" instance=ExtResource("14_tg0qh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.3756, 4.45264, -26.6137)
+
+[node name="gnuchanos8" parent="fatih" instance=ExtResource("14_tg0qh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.3756, 4.45264, -31.4583)
+
+[node name="gnuchanos9" parent="fatih" instance=ExtResource("14_tg0qh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.3756, 4.45264, -36.028)
+
+[node name="gnuchanos10" parent="fatih" instance=ExtResource("14_tg0qh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.3756, 4.45264, -44.9014)
+
+[node name="gnuchanos11" parent="fatih" instance=ExtResource("14_tg0qh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.3756, 4.45264, -49.746)
+
+[node name="gnuchanos12" parent="fatih" instance=ExtResource("14_tg0qh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.3756, 4.45264, -54.3158)
+
+[node name="fatih2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5643, 0, 0)
+
+[node name="gnuchanos" parent="fatih2" instance=ExtResource("14_tg0qh")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 12.9087, 9.3899, -54.4074)
+
+[node name="gnuchanos2" parent="fatih2" instance=ExtResource("14_tg0qh")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 12.9087, 9.3899, -49.5628)
+
+[node name="gnuchanos3" parent="fatih2" instance=ExtResource("14_tg0qh")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 12.9087, 9.3899, -44.9931)
+
+[node name="gnuchanos4" parent="fatih2" instance=ExtResource("14_tg0qh")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 12.9087, 9.3899, -36.1196)
+
+[node name="gnuchanos5" parent="fatih2" instance=ExtResource("14_tg0qh")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 12.9087, 9.3899, -31.2751)
+
+[node name="gnuchanos6" parent="fatih2" instance=ExtResource("14_tg0qh")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 12.9087, 9.3899, -26.7053)
+
+[node name="gnuchanos25" parent="fatih2" instance=ExtResource("14_tg0qh")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 10.634, 7.30019, -54.4074)
+
+[node name="gnuchanos26" parent="fatih2" instance=ExtResource("14_tg0qh")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 10.634, 7.30019, -49.5628)
+
+[node name="gnuchanos27" parent="fatih2" instance=ExtResource("14_tg0qh")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 10.634, 7.30019, -44.9931)
+
+[node name="gnuchanos28" parent="fatih2" instance=ExtResource("14_tg0qh")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 10.634, 7.30019, -36.1196)
+
+[node name="gnuchanos29" parent="fatih2" instance=ExtResource("14_tg0qh")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 10.634, 7.30019, -31.2751)
+
+[node name="gnuchanos30" parent="fatih2" instance=ExtResource("14_tg0qh")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 10.634, 7.30019, -26.7053)
+
+[node name="gnuchanos22" parent="fatih2" instance=ExtResource("14_tg0qh")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 9.1725, 6.28522, -36.1196)
+
+[node name="gnuchanos23" parent="fatih2" instance=ExtResource("14_tg0qh")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 9.1725, 6.28522, -31.2751)
+
+[node name="gnuchanos24" parent="fatih2" instance=ExtResource("14_tg0qh")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 9.1725, 6.28522, -26.7053)
+
+[node name="gnuchanos13" parent="fatih2" instance=ExtResource("14_tg0qh")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 7.79439, 5.28386, -54.4074)
+
+[node name="gnuchanos14" parent="fatih2" instance=ExtResource("14_tg0qh")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 7.79439, 5.28386, -49.5628)
+
+[node name="gnuchanos15" parent="fatih2" instance=ExtResource("14_tg0qh")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 7.79439, 5.28386, -44.9931)
+
+[node name="gnuchanos10" parent="fatih2" instance=ExtResource("14_tg0qh")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 6.71818, 4.45264, -36.1196)
+
+[node name="gnuchanos11" parent="fatih2" instance=ExtResource("14_tg0qh")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 6.71818, 4.45264, -31.2751)
+
+[node name="gnuchanos12" parent="fatih2" instance=ExtResource("14_tg0qh")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 6.71818, 4.45264, -26.7053)
 
 [connection signal="close_requested" from="player0/UI/settings" to="player0/UI/settings" method="_on_close_requested"]
 [connection signal="pressed" from="player0/UI/settings/BLACKHOLE/VBoxContainer/windowMode/WindowMode" to="player0/UI/settings" method="_on_window_mode_pressed"]

@@ -9,18 +9,21 @@ const JUMP_VELOCITY = 4.5
 
 
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("escape"):
+	if Input.is_action_just_pressed("f"):
 		if GlobalVAR.PlayerLookingSettings:
 			GlobalVAR.PlayerLookingSettings = false
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-			Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 			SettingsWindow.hide()
-			GlobalVAR.pausedMode = false
+			Engine.time_scale = 1.0
 		else:
 			GlobalVAR.PlayerLookingSettings = true
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 			SettingsWindow.show()
-			GlobalVAR.pausedMode = true
+			Engine.time_scale = 0 
+
+	if Input.is_action_just_pressed("leftM"):
+		if not $UI/settings.visible:
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 	# i hope this is can't be performance problem
 	Camera.fov = GlobalVAR.PlayerFOV_Current

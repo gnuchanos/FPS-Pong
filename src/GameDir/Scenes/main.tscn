@@ -1,32 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://dsqp445w7ghtq"]
+[gd_scene load_steps=9 format=3 uid="uid://bksyjxboopjov"]
 
 [ext_resource type="Script" path="res://GameDir/Scripts/main.gd" id="1_fixxu"]
-[ext_resource type="FontFile" uid="uid://bqmglpkfyr1mm" path="res://BaseData/Font/FreeSans.ttf" id="1_vh32o"]
+[ext_resource type="Texture2D" uid="uid://bccqy527dv5wt" path="res://BaseData/Image/bg.png" id="2_f1omh"]
+[ext_resource type="Theme" uid="uid://dybjnvhp4b5h8" path="res://defaultTheme.tres" id="3_w7kyi"]
+[ext_resource type="Script" path="res://BaseData/FPS/settings.gd" id="4_l1jk2"]
+[ext_resource type="FontFile" uid="uid://bqmglpkfyr1mm" path="res://BaseData/Font/FreeSans.ttf" id="5_3sauq"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fixxu"]
-bg_color = Color(0.111696, 0.00724688, 0.156991, 1)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_l1jk2"]
+texture = ExtResource("2_f1omh")
 
-[sub_resource type="Animation" id="Animation_fixxu"]
-resource_name = "anim"
-length = 2.0
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:size")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1, 2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(1600, 900), Vector2(1600, 1200), Vector2(1600, 900)]
-}
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i4qlv"]
+bg_color = Color(0.0177324, 0.0177324, 0.0177324, 1)
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_f1omh"]
-_data = {
-"anim": SubResource("Animation_fixxu")
-}
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bvye3"]
+bg_color = Color(0.197937, 0.197937, 0.197937, 1)
 
 [node name="main" type="Control"]
 layout_mode = 3
@@ -42,24 +29,214 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -95.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_fixxu")
+theme_override_styles/panel = SubResource("StyleBoxTexture_l1jk2")
 
-[node name="text" type="Label" parent="."]
+[node name="UI" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("1_vh32o")
-theme_override_font_sizes/font_size = 111
-text = "Press Enter Start The Game..."
-horizontal_alignment = 1
-vertical_alignment = 1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="text"]
-libraries = {
-"": SubResource("AnimationLibrary_f1omh")
-}
+[node name="settings" type="Window" parent="UI"]
+auto_translate_mode = 1
+position = Vector2i(60, 36)
+size = Vector2i(830, 785)
+visible = false
+script = ExtResource("4_l1jk2")
+
+[node name="BLACKHOLE" type="ScrollContainer" parent="UI/settings"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/settings/BLACKHOLE"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="sep" type="Label" parent="UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_i4qlv")
+
+[node name="windowMode" type="HBoxContainer" parent="UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+
+[node name="WindowMode" type="Button" parent="UI/settings/BLACKHOLE/VBoxContainer/windowMode"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("5_3sauq")
+theme_override_font_sizes/font_size = 45
+text = "Full Screen Mode"
+
+[node name="sep2" type="Label" parent="UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_i4qlv")
+
+[node name="mouseSpeedtext" type="Label" parent="UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_3sauq")
+theme_override_font_sizes/font_size = 27
+theme_override_styles/normal = SubResource("StyleBoxFlat_bvye3")
+text = "Mouse Speed"
+horizontal_alignment = 1
+
+[node name="mouseSpeed" type="HBoxContainer" parent="UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+
+[node name="mousespeedSlider" type="HSlider" parent="UI/settings/BLACKHOLE/VBoxContainer/mouseSpeed"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 0.1
+max_value = 1.0
+step = 0.1
+value = 0.5
+
+[node name="sep3" type="Label" parent="UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_i4qlv")
+
+[node name="MusicVolumeText" type="Label" parent="UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_3sauq")
+theme_override_font_sizes/font_size = 27
+theme_override_styles/normal = SubResource("StyleBoxFlat_bvye3")
+text = "Music Volume"
+horizontal_alignment = 1
+
+[node name="MusicVolume" type="HBoxContainer" parent="UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+
+[node name="MusicVolumeSlider" type="HSlider" parent="UI/settings/BLACKHOLE/VBoxContainer/MusicVolume"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = -30.0
+max_value = 0.0
+
+[node name="sep4" type="Label" parent="UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_i4qlv")
+
+[node name="EffectVolumeText" type="Label" parent="UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_3sauq")
+theme_override_font_sizes/font_size = 27
+theme_override_styles/normal = SubResource("StyleBoxFlat_bvye3")
+text = "Effect Volume"
+horizontal_alignment = 1
+
+[node name="EffectVolume" type="HBoxContainer" parent="UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+
+[node name="EffectVolumeSlider" type="HSlider" parent="UI/settings/BLACKHOLE/VBoxContainer/EffectVolume"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = -30.0
+max_value = 0.0
+
+[node name="sep5" type="Label" parent="UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_i4qlv")
+
+[node name="EffectVolumeText2" type="Label" parent="UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_3sauq")
+theme_override_font_sizes/font_size = 27
+theme_override_styles/normal = SubResource("StyleBoxFlat_bvye3")
+text = "Atmosphere Volume"
+horizontal_alignment = 1
+
+[node name="AtmosphereVolume" type="HBoxContainer" parent="UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+
+[node name="AtmosphereVolumeSlider" type="HSlider" parent="UI/settings/BLACKHOLE/VBoxContainer/AtmosphereVolume"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = -30.0
+max_value = 0.0
+
+[node name="sep6" type="Label" parent="UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_i4qlv")
+
+[node name="VoiceVolumeText" type="Label" parent="UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_3sauq")
+theme_override_font_sizes/font_size = 27
+theme_override_styles/normal = SubResource("StyleBoxFlat_bvye3")
+text = "Voice Volume"
+horizontal_alignment = 1
+
+[node name="VoiceVolume" type="HBoxContainer" parent="UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+
+[node name="VoiceVolumeSlider" type="HSlider" parent="UI/settings/BLACKHOLE/VBoxContainer/VoiceVolume"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = -30.0
+max_value = 0.0
+
+[node name="sep7" type="Label" parent="UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_i4qlv")
+
+[node name="fovText" type="Label" parent="UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_3sauq")
+theme_override_font_sizes/font_size = 27
+theme_override_styles/normal = SubResource("StyleBoxFlat_bvye3")
+text = "FOV"
+horizontal_alignment = 1
+
+[node name="fov" type="HBoxContainer" parent="UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+
+[node name="fovSlider" type="HSlider" parent="UI/settings/BLACKHOLE/VBoxContainer/fov"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 30.0
+max_value = 120.0
+value = 90.0
+
+[node name="sep8" type="Label" parent="UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_i4qlv")
+
+[node name="startgame" type="Button" parent="."]
+layout_mode = 0
+offset_left = 54.0
+offset_top = 72.0
+offset_right = 334.0
+offset_bottom = 135.0
+theme = ExtResource("3_w7kyi")
+theme_override_font_sizes/font_size = 56
+text = " Start Game "
+
+[node name="settings" type="Button" parent="."]
+layout_mode = 0
+offset_left = 69.0
+offset_top = 170.0
+offset_right = 349.0
+offset_bottom = 233.0
+theme = ExtResource("3_w7kyi")
+theme_override_font_sizes/font_size = 56
+text = " Settings"
+
+[connection signal="close_requested" from="UI/settings" to="UI/settings" method="_on_close_requested"]
+[connection signal="pressed" from="UI/settings/BLACKHOLE/VBoxContainer/windowMode/WindowMode" to="UI/settings" method="_on_window_mode_pressed"]
+[connection signal="value_changed" from="UI/settings/BLACKHOLE/VBoxContainer/mouseSpeed/mousespeedSlider" to="UI/settings" method="_on_mousespeed_slider_value_changed"]
+[connection signal="value_changed" from="UI/settings/BLACKHOLE/VBoxContainer/MusicVolume/MusicVolumeSlider" to="UI/settings" method="_on_music_volume_slider_value_changed"]
+[connection signal="value_changed" from="UI/settings/BLACKHOLE/VBoxContainer/EffectVolume/EffectVolumeSlider" to="UI/settings" method="_on_effect_volume_slider_value_changed"]
+[connection signal="value_changed" from="UI/settings/BLACKHOLE/VBoxContainer/AtmosphereVolume/AtmosphereVolumeSlider" to="UI/settings" method="_on_atmosphere_volume_slider_value_changed"]
+[connection signal="value_changed" from="UI/settings/BLACKHOLE/VBoxContainer/VoiceVolume/VoiceVolumeSlider" to="UI/settings" method="_on_voice_volume_slider_value_changed"]
+[connection signal="value_changed" from="UI/settings/BLACKHOLE/VBoxContainer/fov/fovSlider" to="UI/settings" method="_on_fov_slider_value_changed"]
+[connection signal="pressed" from="startgame" to="." method="_on_startgame_pressed"]
+[connection signal="pressed" from="settings" to="." method="_on_settings_pressed"]

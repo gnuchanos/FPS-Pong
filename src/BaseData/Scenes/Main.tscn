@@ -1,0 +1,261 @@
+[gd_scene load_steps=8 format=3 uid="uid://co1fs27thsqwj"]
+
+[ext_resource type="Texture2D" uid="uid://bccqy527dv5wt" path="res://BaseData/Image/bg.png" id="1_7ngel"]
+[ext_resource type="Script" uid="uid://pt6uvfnqm21" path="res://BaseData/FPS/settings.gd" id="2_10sq6"]
+[ext_resource type="FontFile" uid="uid://bqmglpkfyr1mm" path="res://BaseData/Font/FreeSans.ttf" id="3_6rasy"]
+[ext_resource type="Theme" uid="uid://dybjnvhp4b5h8" path="res://BaseData/defaultTheme.tres" id="4_sf1g7"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gfode"]
+texture = ExtResource("1_7ngel")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sf1g7"]
+bg_color = Color(0.0177324, 0.0177324, 0.0177324, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rbdrv"]
+bg_color = Color(0.197937, 0.197937, 0.197937, 1)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="bg" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -152.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_gfode")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="settings" type="Window" parent="UI"]
+auto_translate_mode = 1
+position = Vector2i(60, 36)
+size = Vector2i(830, 785)
+visible = false
+script = ExtResource("2_10sq6")
+
+[node name="BLACKHOLE" type="ScrollContainer" parent="UI/settings"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/settings/BLACKHOLE"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="sep" type="Label" parent="UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_sf1g7")
+
+[node name="windowMode" type="HBoxContainer" parent="UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+
+[node name="WindowMode" type="Button" parent="UI/settings/BLACKHOLE/VBoxContainer/windowMode"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_6rasy")
+theme_override_font_sizes/font_size = 45
+text = "Full Screen Mode"
+
+[node name="sep2" type="Label" parent="UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_sf1g7")
+
+[node name="mouseSpeedtext" type="Label" parent="UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_6rasy")
+theme_override_font_sizes/font_size = 27
+theme_override_styles/normal = SubResource("StyleBoxFlat_rbdrv")
+text = "Mouse Speed"
+horizontal_alignment = 1
+
+[node name="mouseSpeed" type="HBoxContainer" parent="UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+
+[node name="mousespeedSlider" type="HSlider" parent="UI/settings/BLACKHOLE/VBoxContainer/mouseSpeed"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 0.1
+max_value = 1.0
+step = 0.1
+value = 0.5
+
+[node name="sep3" type="Label" parent="UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_sf1g7")
+
+[node name="MusicVolumeText" type="Label" parent="UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_6rasy")
+theme_override_font_sizes/font_size = 27
+theme_override_styles/normal = SubResource("StyleBoxFlat_rbdrv")
+text = "Music Volume"
+horizontal_alignment = 1
+
+[node name="MusicVolume" type="HBoxContainer" parent="UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+
+[node name="MusicVolumeSlider" type="HSlider" parent="UI/settings/BLACKHOLE/VBoxContainer/MusicVolume"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = -30.0
+max_value = 0.0
+
+[node name="sep4" type="Label" parent="UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_sf1g7")
+
+[node name="EffectVolumeText" type="Label" parent="UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_6rasy")
+theme_override_font_sizes/font_size = 27
+theme_override_styles/normal = SubResource("StyleBoxFlat_rbdrv")
+text = "Effect Volume"
+horizontal_alignment = 1
+
+[node name="EffectVolume" type="HBoxContainer" parent="UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+
+[node name="EffectVolumeSlider" type="HSlider" parent="UI/settings/BLACKHOLE/VBoxContainer/EffectVolume"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = -30.0
+max_value = 0.0
+
+[node name="sep5" type="Label" parent="UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_sf1g7")
+
+[node name="EffectVolumeText2" type="Label" parent="UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_6rasy")
+theme_override_font_sizes/font_size = 27
+theme_override_styles/normal = SubResource("StyleBoxFlat_rbdrv")
+text = "Atmosphere Volume"
+horizontal_alignment = 1
+
+[node name="AtmosphereVolume" type="HBoxContainer" parent="UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+
+[node name="AtmosphereVolumeSlider" type="HSlider" parent="UI/settings/BLACKHOLE/VBoxContainer/AtmosphereVolume"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = -30.0
+max_value = 0.0
+
+[node name="sep6" type="Label" parent="UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_sf1g7")
+
+[node name="VoiceVolumeText" type="Label" parent="UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_6rasy")
+theme_override_font_sizes/font_size = 27
+theme_override_styles/normal = SubResource("StyleBoxFlat_rbdrv")
+text = "Voice Volume"
+horizontal_alignment = 1
+
+[node name="VoiceVolume" type="HBoxContainer" parent="UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+
+[node name="VoiceVolumeSlider" type="HSlider" parent="UI/settings/BLACKHOLE/VBoxContainer/VoiceVolume"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = -30.0
+max_value = 0.0
+
+[node name="sep7" type="Label" parent="UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_sf1g7")
+
+[node name="fovText" type="Label" parent="UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_6rasy")
+theme_override_font_sizes/font_size = 27
+theme_override_styles/normal = SubResource("StyleBoxFlat_rbdrv")
+text = "FOV"
+horizontal_alignment = 1
+
+[node name="fov" type="HBoxContainer" parent="UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+
+[node name="fovSlider" type="HSlider" parent="UI/settings/BLACKHOLE/VBoxContainer/fov"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 30.0
+max_value = 120.0
+value = 90.0
+
+[node name="sep8" type="Label" parent="UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_sf1g7")
+
+[node name="shadersText" type="Label" parent="UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_6rasy")
+theme_override_font_sizes/font_size = 27
+theme_override_styles/normal = SubResource("StyleBoxFlat_rbdrv")
+text = "Shaders"
+horizontal_alignment = 1
+
+[node name="shader0" type="HBoxContainer" parent="UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+
+[node name="shader0Button" type="Button" parent="UI/settings/BLACKHOLE/VBoxContainer/shader0"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_6rasy")
+theme_override_font_sizes/font_size = 25
+text = "Close Shader 0"
+
+[node name="shader1" type="HBoxContainer" parent="UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+
+[node name="shader1Button" type="Button" parent="UI/settings/BLACKHOLE/VBoxContainer/shader1"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_6rasy")
+theme_override_font_sizes/font_size = 25
+text = "Close Shader 1"
+
+[node name="sep10" type="Label" parent="UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_sf1g7")
+
+[node name="Start Game" type="Button" parent="."]
+layout_mode = 0
+offset_left = 101.0
+offset_top = 222.0
+offset_right = 109.0
+offset_bottom = 230.0
+theme = ExtResource("4_sf1g7")
+text = " Start Game "
+
+[connection signal="close_requested" from="UI/settings" to="UI/settings" method="_on_close_requested"]
+[connection signal="pressed" from="UI/settings/BLACKHOLE/VBoxContainer/windowMode/WindowMode" to="UI/settings" method="_on_window_mode_pressed"]
+[connection signal="value_changed" from="UI/settings/BLACKHOLE/VBoxContainer/mouseSpeed/mousespeedSlider" to="UI/settings" method="_on_mousespeed_slider_value_changed"]
+[connection signal="value_changed" from="UI/settings/BLACKHOLE/VBoxContainer/MusicVolume/MusicVolumeSlider" to="UI/settings" method="_on_music_volume_slider_value_changed"]
+[connection signal="value_changed" from="UI/settings/BLACKHOLE/VBoxContainer/EffectVolume/EffectVolumeSlider" to="UI/settings" method="_on_effect_volume_slider_value_changed"]
+[connection signal="value_changed" from="UI/settings/BLACKHOLE/VBoxContainer/AtmosphereVolume/AtmosphereVolumeSlider" to="UI/settings" method="_on_atmosphere_volume_slider_value_changed"]
+[connection signal="value_changed" from="UI/settings/BLACKHOLE/VBoxContainer/VoiceVolume/VoiceVolumeSlider" to="UI/settings" method="_on_voice_volume_slider_value_changed"]
+[connection signal="value_changed" from="UI/settings/BLACKHOLE/VBoxContainer/fov/fovSlider" to="UI/settings" method="_on_fov_slider_value_changed"]
+[connection signal="pressed" from="UI/settings/BLACKHOLE/VBoxContainer/shader0/shader0Button" to="UI/settings" method="_on_shader_0_pressed"]
+[connection signal="pressed" from="UI/settings/BLACKHOLE/VBoxContainer/shader1/shader1Button" to="UI/settings" method="_on_shader_1_button_2_pressed"]

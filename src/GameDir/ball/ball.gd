@@ -11,27 +11,28 @@ func _outside():
 		self.position.x = 0.27
 		self.position.z = -40.732
 		self.position.y = 2.336
+		GlobalVAR.MaxSpeed = GlobalVAR.MaxSpeed
 		timer = 5
 
 func _moveAndRotate(delta):
-	if not GlobalVAR.pausedMode:
-		$ball.rotate_y(25 * delta)
+	$ball.rotate_y(25 * delta)
 
-		# Add the gravity.
-		if not is_on_floor():
-			velocity += get_gravity() * delta
+	# Add the gravity.
+	if not is_on_floor():
+		velocity += get_gravity() * delta
 
-		if not GlobalVAR.ballOutside:
-			if timer > 0:
-				timer -= delta
-				SPEED = 2
-			else:
-				velocity.x = GlobalVAR.ballSpeedX * SPEED
-				velocity.z = GlobalVAR.ballSpeedZ * SPEED
-				move_and_slide()
+	if not GlobalVAR.ballOutside:
+		if timer > 0:
+			timer -= delta
+			SPEED = 2
+		else:
+			velocity.x = GlobalVAR.ballSpeedX * SPEED
+			velocity.z = GlobalVAR.ballSpeedZ * SPEED
+			move_and_slide()
 
-				SPEED += 0.1 * delta
-				SPEED = clamp(SPEED, 1, 5)
+			SPEED += 0.1 * delta
+			GlobalVAR.MaxSpeed += 0.1 * delta
+			SPEED = clamp(SPEED, GlobalVAR.MinSpeed, GlobalVAR.MaxSpeed)
 
 
 func _physics_process(delta: float) -> void:
